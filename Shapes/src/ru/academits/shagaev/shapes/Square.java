@@ -1,40 +1,41 @@
-package ru.academits.shagaev.square;
-
-import ru.academits.shagaev.shape.Shape;
-
-import java.util.Objects;
+package ru.academits.shagaev.shapes;
 
 public class Square implements Shape {
-    final private double side;
+    private final double sideLength;
 
     public Square(double side) {
-        this.side = side;
+        this.sideLength = side;
     }
 
     public double getWidth() {
-        return side;
+        return sideLength;
     }
 
     public double getHeight() {
-        return side;
+        return sideLength;
     }
 
     public double getArea() {
-        return side * side;
+        return sideLength * sideLength;
     }
 
     public double getPerimeter() {
-        return side * 4;
+        return sideLength * 4;
     }
 
     @Override
     public String toString() {
-        return ("Квадрат со стороной: " + side);
+        return "Квадрат со стороной: " + sideLength;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(side);
+        final int prime = 31;
+        int result = 1;
+
+        result = prime * result + Double.hashCode(sideLength);
+
+        return result;
     }
 
     @Override
@@ -42,10 +43,12 @@ public class Square implements Shape {
         if (this == obj) {
             return true;
         }
+
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
+
         Square square = (Square) obj;
-        return side == square.side;
+        return sideLength == square.sideLength;
     }
 }

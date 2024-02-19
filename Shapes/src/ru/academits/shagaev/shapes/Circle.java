@@ -1,8 +1,4 @@
-package ru.academits.shagaev.circle;
-
-import ru.academits.shagaev.shape.Shape;
-
-import java.util.Objects;
+package ru.academits.shagaev.shapes;
 
 public class Circle implements Shape {
     private final double radius;
@@ -20,7 +16,7 @@ public class Circle implements Shape {
     }
 
     public double getArea() {
-        return Math.PI * Math.pow(radius, 2);
+        return Math.PI * (radius * radius);
     }
 
     public double getPerimeter() {
@@ -29,12 +25,17 @@ public class Circle implements Shape {
 
     @Override
     public String toString() {
-        return ("Окружность с радиусом: " + radius);
+        return "Окружность с радиусом: " + radius;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(radius);
+        final int prime = 31;
+        int result = 1;
+
+        result = prime * result + Double.hashCode(radius);
+
+        return result;
     }
 
     @Override
@@ -42,9 +43,11 @@ public class Circle implements Shape {
         if (this == obj) {
             return true;
         }
+
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
+
         Circle circle = (Circle) obj;
         return radius == circle.radius;
     }

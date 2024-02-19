@@ -1,12 +1,8 @@
-package ru.academits.shagaev.rectangle;
-
-import ru.academits.shagaev.shape.Shape;
-
-import java.util.Objects;
+package ru.academits.shagaev.shapes;
 
 public class Rectangle implements Shape {
-    final private double height;
-    final private double width;
+    private final double height;
+    private final double width;
 
     public Rectangle(double height, double width) {
         this.height = height;
@@ -31,12 +27,18 @@ public class Rectangle implements Shape {
 
     @Override
     public String toString() {
-        return ("Прямоугольник с высотой: " + height + "и шириной: " + width);
+        return "Прямоугольник с высотой: " + height + " и шириной: " + width;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height, width);
+        final int prime = 31;
+        int result = 1;
+
+        result = prime * result + Double.hashCode(height);
+        result = prime * result + Double.hashCode(width);
+
+        return result;
     }
 
     @Override
@@ -44,9 +46,11 @@ public class Rectangle implements Shape {
         if (this == obj) {
             return true;
         }
+
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
+
         Rectangle rectangle = (Rectangle) obj;
         return height == rectangle.height && width == rectangle.width;
     }
