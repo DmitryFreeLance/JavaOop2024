@@ -3,8 +3,12 @@ package ru.academits.shagaev.shapes;
 public class Square implements Shape {
     private final double sideLength;
 
-    public Square(double side) {
-        this.sideLength = side;
+    public Square(double sideLength) {
+        this.sideLength = sideLength;
+    }
+
+    public double getSideLengthSquare() {
+        return sideLength;
     }
 
     public double getWidth() {

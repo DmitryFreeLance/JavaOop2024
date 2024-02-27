@@ -9,6 +9,14 @@ public class Rectangle implements Shape {
         this.width = width;
     }
 
+    public double getRectangleHeight() {
+        return height;
+    }
+
+    public double getRectangleWidth() {
+        return width;
+    }
+
     public double getWidth() {
         return width;
     }
