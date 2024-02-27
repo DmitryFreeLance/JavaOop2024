@@ -46,7 +46,7 @@ public class Vector {
         }
     }
 
-    public void getSubtraction(Vector vector) {
+    public void subtract(Vector vector) {
         int newDimension = Math.max(components.length, vector.components.length);
         resizeVector(newDimension);
 

@@ -23,7 +23,7 @@ public class Main {
 
         vectors[5].setComponent(0, 3.3);
         vectors[5].reverse();
-        vectors[5].getSubtraction(vector3);
+        vectors[5].subtract(vector3);
         System.out.println("Компонента вектора #5 с индексом 0 равна: " + vectors[5].getComponent(0));
         System.out.println("Длина вектора #5 = " + vectors[5].getLength());
 
