@@ -1,7 +1,7 @@
 package ru.academits.shagaev.shapes_main;
 
-import ru.academits.shagaev.comparators.ShapeAreaComparator;
-import ru.academits.shagaev.comparators.ShapePerimeterComparator;
+import ru.academits.shagaev.shapes_comparators.ShapeAreaComparator;
+import ru.academits.shagaev.shapes_comparators.ShapePerimeterComparator;
 import ru.academits.shagaev.shapes.*;
 
 import java.util.Arrays;
@@ -17,18 +17,15 @@ public class Main {
         };
 
         Square square = new Square(4);
-        System.out.println("Длина стороны квадрата = " + square.getSideLengthSquare());
-
-        Rectangle rectangle = new Rectangle(2, 3);
-        System.out.println("Длина прямоугольника = " + rectangle.getRectangleHeight() + " Ширина прямоугольника = " + rectangle.getRectangleWidth());
+        System.out.println("Длина стороны квадрата = " + square.getSideLength());
 
         Circle circle = new Circle(6);
-        System.out.println("Радиус окружности = " + circle.getCircleRadius());
+        System.out.println("Радиус окружности = " + circle.getRadius());
 
         Arrays.sort(shapes, new ShapeAreaComparator());
-        System.out.println("Фигура с максимальной площадью = " + shapes[0]);
+        System.out.println("Фигура с максимальной площадью = " + shapes[4]);
 
         Arrays.sort(shapes, new ShapePerimeterComparator());
-        System.out.println("Фигура с вторым по величине периметром = " + shapes[1]);
+        System.out.println("Фигура с вторым по величине периметром = " + shapes[3]);
     }
 }

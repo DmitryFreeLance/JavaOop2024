@@ -1,4 +1,4 @@
-package ru.academits.shagaev.comparators;
+package ru.academits.shagaev.shapes_comparators;
 
 import ru.academits.shagaev.shapes.Shape;
 
