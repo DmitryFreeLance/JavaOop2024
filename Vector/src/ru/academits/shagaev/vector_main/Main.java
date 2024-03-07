@@ -30,10 +30,10 @@ public class Main {
         Vector vector7 = Vector.getSum(vectors[5], vector2);
         System.out.println("Сложение двух векторов(static): " + vector7);
 
-        Vector vector8 = Vector.getSubtraction(vectors[5], vector2);
+        Vector vector8 = Vector.getSubtract(vectors[5], vector2);
         System.out.println("Разность двух векторов(static): " + vector8);
 
-        double vector9 = Vector.getScalarMultiply(vectors[5], vector2);
+        double vector9 = Vector.getScalarMultiplication(vectors[5], vector2);
         System.out.println("Скалярное произведение двух векторов(static): " + vector9);
     }
 }
