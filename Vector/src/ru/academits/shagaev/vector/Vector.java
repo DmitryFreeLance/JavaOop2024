@@ -112,6 +112,20 @@ public class Vector {
         return Math.sqrt(sum);
     }
 
+    public double scalarProduct(Vector vector) {
+        if (components.length != vector.getDimension()) {
+            throw new IllegalArgumentException("Несовместимые размеры векторов для скалярного произведения: "
+                    + components.length + " и " + vector.getDimension());
+        }
+
+        double product = 0;
+        for (int i = 0; i < components.length; i++) {
+            product += components[i] * vector.getComponent(i);
+        }
+
+        return product;
+    }
+
     @Override
     public String toString() {
         int dimension = components.length - 1;

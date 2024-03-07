@@ -1,6 +1,6 @@
-package ru.academits.shagaev.matrix.main;
+package ru.academits.shagaev.main;
 
-import ru.academits.shagaev.matrix.matrix.Matrix;
+import ru.academits.shagaev.matrix.Matrix;
 import ru.academits.shagaev.vector.Vector;
 
 public class Main {
@@ -16,14 +16,16 @@ public class Main {
         Matrix matrix4 = new Matrix(vectors);
 
         matrix4.setRow(1, vectors[0]);
+        System.out.println("Кол-во строк = " + matrix4.getRowsCount());
+        System.out.println("Столбец : " + matrix4.getColumn(2));
         matrix2.transpose();
-        matrix3.scalarMultiply(3.0);
+        matrix3.multiplyByScalar(3.0);
         matrix4.getDeterminant();
-        matrix2.multiplyByVector(vectors[1]);
+        System.out.println(matrix2.multiplyByVector(vectors[1]));
         matrix3.subtract(matrix1);
 
         System.out.println("Результат сложения матриц равен: " + Matrix.getSum(matrix3, matrix4));
-        System.out.println("Результат разности матриц равен: " + Matrix.getSubtraction(matrix3, matrix4));
-        System.out.println("Результат умножения матриц равен: " + Matrix.getMultiply(matrix3, matrix4));
+        System.out.println("Результат разности матриц равен: " + Matrix.getSubtract(matrix3, matrix4));
+        System.out.println("Результат умножения матриц равен: " + Matrix.getProduct(matrix3, matrix4));
     }
 }

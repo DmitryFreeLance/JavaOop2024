@@ -1,4 +1,4 @@
-package ru.academits.shagaev.arraylist.arraylist;
+package ru.academits.shagaev.arraylist;
 
 import java.util.*;
 

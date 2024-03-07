@@ -1,6 +1,6 @@
-package ru.academits.shagaev.list.main;
+package ru.academits.shagaev.list_main;
 
-import ru.academits.shagaev.list.singlyLinkedList.SinglyLinkedList;
+import ru.academits.shagaev.singlylinkedlist.SinglyLinkedList;
 
 public class Main {
     public static void main(String[] args) {

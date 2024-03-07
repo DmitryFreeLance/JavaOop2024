@@ -1,4 +1,4 @@
-package ru.academits.shagaev.list.node;
+package ru.academits.shagaev.node;
 
 public class Node {
     public int data;

@@ -1,6 +1,6 @@
-package ru.academits.shagaev.arraylist.main;
+package ru.academits.shagaev.main;
 
-import ru.academits.shagaev.arraylist.arraylist.MyArrayList;
+import ru.academits.shagaev.arraylist.MyArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class Main {
         list2.trimToSize();
 
         MyArrayList<Integer> list3 = new MyArrayList<>(list2);
-        
+
         for (int item : list3) {
             System.out.printf("%d ", item);
         }

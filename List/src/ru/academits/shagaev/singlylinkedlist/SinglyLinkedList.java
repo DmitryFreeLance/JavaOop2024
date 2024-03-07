@@ -1,6 +1,6 @@
-package ru.academits.shagaev.list.singlyLinkedList;
+package ru.academits.shagaev.singlylinkedlist;
 
-import ru.academits.shagaev.list.node.Node;
+import ru.academits.shagaev.node.Node;
 
 public class SinglyLinkedList {
     private Node head;
