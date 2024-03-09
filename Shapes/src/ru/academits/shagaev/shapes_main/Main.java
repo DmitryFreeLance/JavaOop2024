@@ -23,9 +23,9 @@ public class Main {
         System.out.println("Радиус окружности = " + circle.getRadius());
 
         Arrays.sort(shapes, new ShapeAreaComparator());
-        System.out.println("Фигура с максимальной площадью = " + shapes[4]);
+        System.out.println("Фигура с максимальной площадью = " + shapes[shapes.length - 1]);
 
         Arrays.sort(shapes, new ShapePerimeterComparator());
-        System.out.println("Фигура с вторым по величине периметром = " + shapes[3]);
+        System.out.println("Фигура с вторым по величине периметром = " + shapes[shapes.length - 2]);
     }
 }
