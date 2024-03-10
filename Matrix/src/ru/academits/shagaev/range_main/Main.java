@@ -1,4 +1,4 @@
-package ru.academits.shagaev.main;
+package ru.academits.shagaev.range_main;
 
 import ru.academits.shagaev.matrix.Matrix;
 import ru.academits.shagaev.vector.Vector;
