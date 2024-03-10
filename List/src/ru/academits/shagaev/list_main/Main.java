@@ -1,39 +1,31 @@
 package ru.academits.shagaev.list_main;
 
-import ru.academits.shagaev.singlylinkedlist.SinglyLinkedList;
+import ru.academits.shagaev.list.SinglyLinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        SinglyLinkedList myList = new SinglyLinkedList();
+        SinglyLinkedList<Integer> List1 = new SinglyLinkedList<>();
 
-        myList.insertionToBeginning(5);
-        myList.insertionToBeginning(6);
-        myList.insertionToBeginning(9);
-        myList.insertionElementByIndex(1, 4);
-        myList.insertionElementByIndex(2, 5);
-        myList.insertionElementByIndex(3, 4);
+        List1.addFirst(5);
+        List1.addFirst(6);
+        List1.addFirst(9);
+        List1.addByIndex(2, 4);
 
-        int changedValue = myList.changeDataByIndex(3, 18);
-        System.out.println("Значение до изменения = " + changedValue);
+        Integer oldData = List1.set(1, 18);
+        System.out.println("Значение до изменения = " + oldData);
 
-        int deletedValue = myList.deleteElementByIndex(4);
-        System.out.println("Значение до удаления = " + deletedValue);
+        int deletedData = List1.remove(1);
+        System.out.println("Значение до удаления = " + deletedData);
 
-        System.out.println("Удаление по значению: " + myList.deleteByData(4));
+        System.out.println("Удаление по значению: " + List1.removeByData(4));
 
-        System.out.println("Первый элемент в списке = " + myList.getFirstElementData());
+        System.out.println("Первый элемент в списке = " + List1.getFirst());
 
-        for (int i = 0; i < myList.getListLength(); i++) {
-            System.out.printf("%d | ", myList.getDataByIndex(i));
-        }
+        System.out.println(List1 + ", его длина: " + List1.getCount());
 
-        System.out.println();
+        SinglyLinkedList<Integer> List2 = List1.copy();
+        List2.reverse();
 
-        SinglyLinkedList myList2 = myList.copy();
-        myList2.reverse();
-
-        for (int i = 0; i < myList2.getListLength(); i++) {
-            System.out.printf("%d | ", myList2.getDataByIndex(i));
-        }
+        System.out.println(List2 + ", Элемент под индексом 1 = " + List2.get(1));
     }
 }
