@@ -32,7 +32,6 @@ public class Main {
 
         Vector vector8 = Vector.getDifference(vectors[5], vector2);
         System.out.println("Разность двух векторов(static): " + vector8);
-
         double vector9 = Vector.getScalarProduct(vectors[5], vector2);
         System.out.println("Скалярное произведение двух векторов(static): " + vector9);
     }

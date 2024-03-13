@@ -1,4 +1,4 @@
-package ru.academits.shagaev.range_main;
+package ru.academits.shagaev.matrix_main;
 
 import ru.academits.shagaev.matrix.Matrix;
 import ru.academits.shagaev.vector.Vector;
@@ -21,11 +21,11 @@ public class Main {
         matrix2.transpose();
         matrix3.multiplyByScalar(3.0);
         matrix4.getDeterminant();
-        System.out.println(matrix2.multiplyByVector(vectors[1]));
+        System.out.println(matrix2.multiplyByVector(vectors[1]) + " " + matrix3.getRow(1));
         matrix3.subtract(matrix1);
 
         System.out.println("Результат сложения матриц равен: " + Matrix.getSum(matrix3, matrix4));
-        System.out.println("Результат разности матриц равен: " + Matrix.getSubtract(matrix3, matrix4));
+        System.out.println("Результат разности матриц равен: " + Matrix.getDifference(matrix3, matrix4));
         System.out.println("Результат умножения матриц равен: " + Matrix.getProduct(matrix3, matrix4));
     }
 }
