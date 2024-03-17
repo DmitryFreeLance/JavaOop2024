@@ -6,7 +6,6 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> list = new ArrayList<>();
         list.add(1);
-        System.out.println("Является ли список на массиве пустым? : " + list.isEmpty());
 
         ArrayList<Integer> list2 = new ArrayList<>(25);
         list2.add(1);
