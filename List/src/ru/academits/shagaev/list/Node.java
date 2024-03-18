@@ -1,31 +1,27 @@
 package ru.academits.shagaev.list;
 
-class Node<T> {
-    private T data;
-    private Node<T> next;
+class Node<E> {
+    private E data;
+    private Node<E> next;
 
-    public Node(T data) {
-        this(data, null);
-    }
-
-    public Node(T data, Node<T> next) {
+    public Node(E data, Node<E> next) {
         this.data = data;
         this.next = next;
     }
 
-    public T getData() {
+    public E getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(E data) {
         this.data = data;
     }
 
-    public Node<T> getNext() {
+    public Node<E> getNext() {
         return next;
     }
 
-    public void setNext(Node<T> next) {
+    public void setNext(Node<E> next) {
         this.next = next;
     }
 }
