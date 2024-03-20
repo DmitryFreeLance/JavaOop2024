@@ -2,12 +2,26 @@ package ru.academits.shagaev.csv;
 
 import java.io.*;
 
-public class CSV {
+public class ConverterCsvToHtml {
     public static void main(String[] args) {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("inputCSV"));
-             FileWriter writer = new FileWriter("outputCSV")) {
+        if (args.length != 2) {
+            System.out.println("Ошибка: неправильное количество аргументов.");
+            System.out.println("Использование: java ConverterCsvToHtml <входной файл CSV> <выходной файл HTML>");
+            return;
+        }
 
-            writer.write("<table>\n");
+        String inputFilePath = args[0];
+        String outputFilePath = args[1];
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFilePath));
+             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outputFilePath)))) {
+            writer.println("<!DOCTYPE html>");
+            writer.println(" <html>");
+            writer.println(" <head>");
+            writer.println(" <meta charset=\"UTF-8\">");
+            writer.println(" </head>");
+            writer.println(" <body>");
+            writer.println(" <table>");
 
             char cellSeparator = ',';
             char quote = '"';
@@ -27,7 +41,7 @@ public class CSV {
                 }
 
                 if (quotesCount % 2 == 0) {
-                    writer.write("<tr>\n<td>");
+                    writer.print(" <tr> <td>");
                 }
 
                 for (int i = 0; i < lineLength; i++) {
@@ -36,51 +50,53 @@ public class CSV {
                     if (currentCharacter == quote) {
                         ++quotesCount;
 
-                        if (quotesCount % 3 == 0) {
-                            writer.write(quote);
+                        if (quotesCount % 2 == 0) {
+                            writer.print(quote);
                         }
 
                         continue;
                     }
 
                     if (currentCharacter == less) {
-                        writer.write("&lt;");
+                        writer.print("&lt;");
                         continue;
                     }
 
                     if (currentCharacter == more) {
-                        writer.write("&gt;");
+                        writer.print("&gt;");
                         continue;
                     }
 
                     if (currentCharacter == amp) {
-                        writer.write("&amp;");
+                        writer.print("&amp;");
                         continue;
                     }
 
                     if (currentCharacter == cellSeparator && quotesCount % 2 == 0) {
-                        writer.write("</td>\n<td>");
+                        writer.print(" </td> <td>");
 
                         quotesCount = 0;
 
                         continue;
                     }
 
-                    writer.write(currentCharacter);
+                    writer.print(currentCharacter);
                 }
 
                 if (quotesCount % 2 == 0) {
-                    writer.write("</td>\n</tr>\n");
+                    writer.println(" </td> </tr>");
 
                     quotesCount = 0;
 
                     continue;
                 }
 
-                writer.write("<br/>");
+                writer.println(" <br />");
             }
 
-            writer.write("</table></body></html>");
+            writer.println(" </table>");
+            writer.println(" </body>");
+            writer.println(" </html>");
         } catch (IOException e) {
             System.out.println("Файл не найден");
         }
