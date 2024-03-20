@@ -204,7 +204,7 @@ public class Matrix {
         double[] resultComponents = new double[rows.length];
 
         for (int i = 0; i < rows.length; i++) {
-            resultComponents[i] = rows[i].scalarProduct(vector);
+            resultComponents[i] = Vector.getScalarProduct(rows[i], vector);
         }
 
         return new Vector(resultComponents);

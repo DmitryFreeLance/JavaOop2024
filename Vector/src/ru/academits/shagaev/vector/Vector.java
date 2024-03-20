@@ -7,7 +7,7 @@ public class Vector {
 
     public Vector(int dimension) {
         if (dimension <= 0) {
-            throw new IllegalArgumentException("Размерность вектора не может быть меньше или равна 0 " + dimension);
+            throw new IllegalArgumentException("Размерность вектора должна быть больше нуля: " + dimension);
         }
 
         components = new double[dimension];
@@ -27,7 +27,7 @@ public class Vector {
 
     public Vector(int dimension, double[] components) {
         if (dimension <= 0) {
-            throw new IllegalArgumentException("Нельзя создать вектор нулевой или отрицательной размерности " + dimension);
+            throw new IllegalArgumentException("Нельзя создать вектор размерности меньше единицы: " + dimension);
         }
 
         this.components = Arrays.copyOf(components, dimension);
@@ -38,8 +38,7 @@ public class Vector {
     }
 
     public void add(Vector vector) {
-        int newDimension = Math.max(components.length, vector.components.length);
-        increaseDimension(newDimension);
+        increaseDimension(vector.components.length);
 
         for (int i = 0; i < vector.components.length; i++) {
             components[i] += vector.components[i];
@@ -47,17 +46,16 @@ public class Vector {
     }
 
     public void subtract(Vector vector) {
-        int newDimension = Math.max(components.length, vector.components.length);
-        increaseDimension(newDimension);
+        increaseDimension(vector.components.length);
 
         for (int i = 0; i < vector.components.length; i++) {
             components[i] -= vector.components[i];
         }
     }
 
-    private void increaseDimension(int newDimension) {
-        if (newDimension > components.length) {
-            components = Arrays.copyOf(components, newDimension);
+    private void increaseDimension(int maxSize) {
+        if (maxSize > components.length) {
+            components = Arrays.copyOf(components, maxSize);
         }
     }
 
@@ -110,15 +108,6 @@ public class Vector {
         }
 
         return Math.sqrt(sum);
-    }
-
-    public double scalarProduct(Vector vector) {
-        if (this.components.length != vector.components.length) {
-            throw new IllegalArgumentException("Несовместимые размеры векторов для скалярного произведения: "
-                    + this.components.length + " и " + vector.components.length);
-        }
-
-        return getScalarProduct(this, vector);
     }
 
     @Override
