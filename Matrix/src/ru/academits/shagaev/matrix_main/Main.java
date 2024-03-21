@@ -16,7 +16,6 @@ public class Main {
         Matrix matrix4 = new Matrix(vectors);
 
         matrix4.setRow(1, vectors[0]);
-        System.out.println("Кол-во строк = " + matrix4.getRowsCount());
         System.out.println("Столбец : " + matrix4.getColumn(2));
         matrix2.transpose();
         matrix3.multiplyByScalar(3.0);
@@ -24,8 +23,11 @@ public class Main {
         System.out.println(matrix2.multiplyByVector(vectors[1]) + " " + matrix3.getRow(1));
         matrix3.subtract(matrix1);
 
-        System.out.println("Результат сложения матриц равен: " + Matrix.getSum(matrix3, matrix4));
-        System.out.println("Результат разности матриц равен: " + Matrix.getDifference(matrix3, matrix4));
-        System.out.println("Результат умножения матриц равен: " + Matrix.getProduct(matrix3, matrix4));
+        System.out.println("Результат сложения матриц " + matrix3 + " " + matrix4 +
+                " равен: " + Matrix.getSum(matrix3, matrix4));
+        System.out.println("Результат разности матриц " + matrix3 + " " + matrix4 +
+                " равен: " + Matrix.getDifference(matrix3, matrix4));
+        System.out.println("Результат умножения матриц " + matrix3 + " " + matrix4 +
+                " равен: " + Matrix.getProduct(matrix3, matrix4));
     }
 }
