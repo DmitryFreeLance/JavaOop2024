@@ -2,6 +2,11 @@ package ru.academits.shagaev.tree;
 
 import ru.academits.shagaev.node.TreeNode;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
+
 public class Tree<T> {
     private TreeNode<T> root;
     private int size;
@@ -42,6 +47,7 @@ public class Tree<T> {
                     current = current.getLeftChild();
                 } else {
                     current.setLeftChild(new TreeNode<>(data));
+                    size++;
                     return;
                 }
             } else {
@@ -49,6 +55,7 @@ public class Tree<T> {
                     current = current.getRightChild();
                 } else {
                     current.setRightChild(new TreeNode<>(data));
+                    size++;
                     return;
                 }
             }
@@ -90,8 +97,75 @@ public class Tree<T> {
         return node;
     }
 
-    public int size() {
+    public int getSize() {
         return size;
+    }
+
+    public void breadthFirstTraversal() {
+        if (root == null) {
+            return;
+        }
+
+        Queue<TreeNode<T>> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode<T> currentElement = queue.poll();
+            System.out.println(currentElement.getData());
+
+            if (currentElement.getLeftChild() != null) {
+                queue.add(currentElement.getLeftChild());
+            }
+
+            if (currentElement.getRightChild() != null) {
+                queue.add(currentElement.getRightChild());
+            }
+        }
+    }
+
+    public void depthFirstTraversalRecursion(TreeNode<T> node) {
+        if (node == null) {
+            return;
+        }
+
+        visit(node);
+
+        List<TreeNode<T>> children = node.getChildren();
+        if (children != null) {
+            for (TreeNode<T> child : children) {
+                depthFirstTraversalRecursion(child);
+            }
+        }
+    }
+
+    private void visit(TreeNode<T> node) {
+        System.out.println(node.getData() + " ");
+    }
+
+    public void depthFirstTraversal() {
+        if (root == null) {
+            return;
+        }
+
+        Stack<TreeNode<T>> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode<T> currentElement = stack.pop();
+            System.out.println(currentElement.getData());
+
+            if (currentElement.getRightChild() != null) {
+                stack.add(currentElement.getRightChild());
+            }
+
+            if (currentElement.getLeftChild() != null) {
+                stack.add(currentElement.getLeftChild());
+            }
+        }
+    }
+
+    public TreeNode<T> getRoot() {
+        return root;
     }
 
     @Override

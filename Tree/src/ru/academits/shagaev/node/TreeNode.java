@@ -1,14 +1,18 @@
 package ru.academits.shagaev.node;
 
+import java.util.List;
+
 public class TreeNode<T> {
     private TreeNode<T> left;
     private TreeNode<T> right;
+    private List<TreeNode<T>> children;
     private T data;
 
     public TreeNode(T data) {
         this.data = data;
         left = null;
         right = null;
+        children = null;
     }
 
     public boolean isDataLessThan(T value) {
@@ -49,5 +53,9 @@ public class TreeNode<T> {
 
     public void setRightChild(TreeNode<T> rightChild) {
         right = rightChild;
+    }
+
+    public List<TreeNode<T>> getChildren() {
+        return children;
     }
 }
