@@ -19,7 +19,7 @@ public class Vector {
 
     public Vector(double[] components) {
         if (components.length == 0) {
-            throw new IllegalArgumentException("Нельзя создать вектор нулевой размерности");
+            throw new IllegalArgumentException("Размерность вектора должна быть больше нуля: ");
         }
 
         this.components = Arrays.copyOf(components, components.length);
@@ -27,7 +27,7 @@ public class Vector {
 
     public Vector(int dimension, double[] components) {
         if (dimension <= 0) {
-            throw new IllegalArgumentException("Нельзя создать вектор размерности меньше единицы: " + dimension);
+            throw new IllegalArgumentException("Размерность вектора должна быть больше нуля: " + dimension);
         }
 
         this.components = Arrays.copyOf(components, dimension);
@@ -53,9 +53,9 @@ public class Vector {
         }
     }
 
-    private void increaseDimension(int maxSize) {
-        if (maxSize > components.length) {
-            components = Arrays.copyOf(components, maxSize);
+    private void increaseDimension(int maxDimension) {
+        if (maxDimension > components.length) {
+            components = Arrays.copyOf(components, maxDimension);
         }
     }
 
