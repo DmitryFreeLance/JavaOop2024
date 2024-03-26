@@ -8,46 +8,53 @@ import java.util.List;
 
 public class ArrayListHome {
     public static void main(String[] args) {
-        List<String> linesFromFile = readLinesFromFile();
-        printList(linesFromFile);
+        List<Integer> numbers = readNumbersFromFile("inputArrayListHome");
+        System.out.println("Исходный список:");
+        System.out.println(numbers);
 
-        List<String> uniqueLines = removeDuplicates(linesFromFile);
-        printList(uniqueLines);
+        removeEvenNumbers(numbers);
+        System.out.println("Список после удаления четных чисел:");
+        System.out.println(numbers);
+
+        removeDuplicates(numbers);
+        System.out.println("Список без повторяющихся элементов:");
+        System.out.println(numbers);
     }
 
-    private static List<String> readLinesFromFile() {
-        List<String> linesList = new ArrayList<>();
+    public static List<Integer> readNumbersFromFile(String filename) {
+        List<Integer> numbers = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("input"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
+            
+            while ((line = br.readLine()) != null) {
+                String[] nums = line.trim().split("\\s+");
 
-            while ((line = reader.readLine()) != null) {
-                linesList.add(line);
+                for (String num : nums) {
+                    numbers.add(Integer.parseInt(num));
+                }
             }
         } catch (IOException e) {
             System.out.println("Ошибка при чтении файла: " + e.getMessage());
         }
 
-        return linesList;
+        return numbers;
     }
 
-    private static List<String> removeDuplicates(List<String> linesList) {
-        List<String> uniqueList = new ArrayList<>();
+    public static void removeEvenNumbers(List<Integer> numbers) {
+        numbers.removeIf(num -> num % 2 == 0);
+    }
 
-        for (String line : linesList) {
-            if (!uniqueList.contains(line)) {
-                uniqueList.add(line);
+    public static void removeDuplicates(List<Integer> numbers) {
+        List<Integer> uniqueList = new ArrayList<>();
+
+        for (Integer num : numbers) {
+            if (!uniqueList.contains(num)) {
+                uniqueList.add(num);
             }
         }
 
-        return uniqueList;
-    }
-
-    private static void printList(List<String> list) {
-        System.out.println("Результат распечатки: ");
-
-        for (String item : list) {
-            System.out.println(item);
-        }
+        numbers.clear();
+        numbers.addAll(uniqueList);
     }
 }
