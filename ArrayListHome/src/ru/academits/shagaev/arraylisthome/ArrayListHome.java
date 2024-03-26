@@ -26,7 +26,7 @@ public class ArrayListHome {
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
-            
+
             while ((line = br.readLine()) != null) {
                 String[] nums = line.trim().split("\\s+");
 

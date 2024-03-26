@@ -9,13 +9,14 @@ public class Main {
         list1.addFirst(5);
         list1.addFirst(6);
         list1.addFirst(9);
+        list1.addLast(4);
         list1.addByIndex(2, 4);
 
-        Integer oldData = list1.set(1, 18);
+        Integer oldData = list1.set(0, 18);
         System.out.println("Значение до изменения = " + oldData);
 
-        int deletedData = list1.remove(1);
-        System.out.println("Значение до удаления = " + deletedData);
+        int removedData = list1.removeByIndex(1);
+        System.out.println("Значение до удаления = " + removedData);
 
         System.out.println("Удаление по значению: " + list1.removeByData(4));
 
@@ -26,6 +27,6 @@ public class Main {
         SinglyLinkedList<Integer> list2 = list1.copy();
         list2.reverse();
 
-        System.out.println(list2 + ", Элемент под индексом 1 = " + list2.get(1));
+        System.out.println(list2 + ", Элемент под индексом 1 = " + list2.get(0));
     }
 }

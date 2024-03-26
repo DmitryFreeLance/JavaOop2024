@@ -1,6 +1,7 @@
 package ru.academits.shagaev.list;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SinglyLinkedList<E> {
     private Node<E> head;
@@ -28,19 +29,31 @@ public class SinglyLinkedList<E> {
     }
 
     public E get(int index) {
-        Node<E> node = getNode(index);
-        return node.getData();
+        if (index >= count || index < 0) {
+            throw new IndexOutOfBoundsException("Узла с таким индексом не существует");
+        }
+
+        return getNode(index).getData();
     }
 
     public E set(int index, E data) {
+        if (index >= count || index < 0) {
+            throw new IndexOutOfBoundsException("Узла с таким индексом не существует");
+        }
+
         Node<E> node = getNode(index);
+
+        if (node == null) {
+            throw new NullPointerException("Узел с индексом " + index + " равен null");
+        }
+
         E oldData = node.getData();
         node.setData(data);
 
         return oldData;
     }
 
-    public E remove(int index) {
+    public E removeByIndex(int index) {
         checkIndex(index);
 
         if (index == 0) {
@@ -56,7 +69,7 @@ public class SinglyLinkedList<E> {
     }
 
     public void addFirst(E data) {
-        head = new Node<>(data, head);
+        head = new Node<>(data);
         count++;
     }
 
@@ -68,8 +81,37 @@ public class SinglyLinkedList<E> {
             return;
         }
 
-        Node<E> previousNode = getNode(index - 1);
-        previousNode.setNext(new Node<>(data, previousNode.getNext()));
+        if (index == count) {
+            addLast(data);
+            return;
+        }
+
+        Node<E> currentNode = head;
+
+        for (int i = 0; i < index - 1; i++) {
+            if (currentNode == null) {
+                throw new IndexOutOfBoundsException("Индекс (" + index + ") вне диапазона [0, " + count + "]");
+            }
+            currentNode = currentNode.getNext();
+        }
+
+        currentNode.setNext(new Node<>(data));
+        count++;
+    }
+
+    public void addLast(E data) {
+        if (head == null) {
+            addFirst(data);
+            return;
+        }
+
+        Node<E> currentNode = head;
+
+        while (currentNode.getNext() != null) {
+            currentNode = currentNode.getNext();
+        }
+
+        currentNode.setNext(new Node<>(data));
         count++;
     }
 
@@ -78,13 +120,7 @@ public class SinglyLinkedList<E> {
             return false;
         }
 
-        if (data == null && head.getData() == null) {
-            head = head.getNext();
-            count--;
-            return true;
-        }
-
-        if (data != null && data.equals(head.getData())) {
+        if (Objects.equals(head.getData(), data)) {
             head = head.getNext();
             count--;
             return true;
@@ -93,13 +129,7 @@ public class SinglyLinkedList<E> {
         Node<E> previousNode = head;
 
         while (previousNode.getNext() != null) {
-            if (data == null && previousNode.getNext().getData() == null) {
-                previousNode.setNext(previousNode.getNext().getNext());
-                count--;
-                return true;
-            }
-
-            if (data != null && data.equals(previousNode.getNext().getData())) {
+            if (Objects.equals(previousNode.getNext().getData(), data)) {
                 previousNode.setNext(previousNode.getNext().getNext());
                 count--;
                 return true;
@@ -138,30 +168,24 @@ public class SinglyLinkedList<E> {
     }
 
     public SinglyLinkedList<E> copy() {
-        SinglyLinkedList<E> newSinglyLinkedList = new SinglyLinkedList<>();
+        SinglyLinkedList<E> copiedList = new SinglyLinkedList<>();
 
         if (head == null) {
-            return newSinglyLinkedList;
+            return copiedList;
         }
 
         Node<E> currentNode = head;
-        Node<E> newTail;
-        newSinglyLinkedList.count = this.count;
+        Node<E> copiedTail = new Node<>(currentNode.getData());
+        copiedList.head = copiedTail;
 
-        Node<E> newHead = new Node<>(currentNode.getData(), null);
-        newSinglyLinkedList.head = newHead;
-        newTail = newHead;
-
-        currentNode = currentNode.getNext();
-
-        while (currentNode != null) {
-            Node<E> newNode = new Node<>(currentNode.getData(), null);
-            newTail.setNext(newNode);
-            newTail = newNode;
+        while (currentNode.getNext() != null) {
             currentNode = currentNode.getNext();
+            copiedTail.setNext(new Node<>(currentNode.getData()));
+            copiedTail = copiedTail.getNext();
         }
 
-        return newSinglyLinkedList;
+        copiedList.count = this.count;
+        return copiedList;
     }
 
     private Node<E> getNode(int index) {
@@ -182,14 +206,14 @@ public class SinglyLinkedList<E> {
 
         StringBuilder sb = new StringBuilder();
         sb.append('[');
+        sb.append(head.getData());
 
-        Node<E> node = head;
-        sb.append(node.getData());
+        Node<E> node = head.getNext();
 
-        while (node.getNext() != null) {
+        while (node != null) {
             sb.append(", ");
-            node = node.getNext();
             sb.append(node.getData());
+            node = node.getNext();
         }
 
         sb.append(']');
